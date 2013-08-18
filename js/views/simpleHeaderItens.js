@@ -15,7 +15,7 @@ window.SummaryView = Backbone.View.extend({
 
     initialize: function () {
     	console.log('Initializing Summary View');    
-        this.render();
+        this.render(); 
     },
 
     render: function () {
@@ -110,10 +110,10 @@ window.TestView = Backbone.View.extend({
 
     mapInitialize: function () {
 
-          var myLatlng = new google.maps.LatLng(-6.677881,-34.950570);
+          var myLatlng = new google.maps.LatLng(-6.659543, -34.961884);
         
           var mapOptions = {
-            zoom: 16,
+            zoom: 14,
             center: myLatlng,
             mapTypeId: google.maps.MapTypeId.HYBRID
           }
@@ -121,42 +121,64 @@ window.TestView = Backbone.View.extend({
           var map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);                
 
           var markersInfo = [
-
-
             {
                 position: new google.maps.LatLng(-6.658443, -34.967238),
                 title: 'Aldeia Galego - Artesanato Indígena',               
-                infoWindowContent: "<p>Anselmo<br> Celular: (83) 8807-8920</p>"
+                infoWindowContent: "<p><b>Anselmo Potiguara</b><br>Aldeia Galego</p>"
             }, 
+
             {
                 position: new google.maps.LatLng(-6.677881,-34.950570),
-                title: 'Minha Residencia',                
-                infoWindowContent: "<p>Minha humilde Residencia!</p>"                
-            }
+                title: 'João Helis Junior',                
+                infoWindowContent: "<p><b>João Helis Junior de Azevedo Bernardo</b><br>Baía da Traição<br>twitter.com/joaohelis</p>"                
+            },
 
+            {
+                position: new google.maps.LatLng(-6.659543, -34.961884),
+                title: 'Pajé Antonio',                
+                infoWindowContent: "<p><b>Pajé Antonio</b><br>Aldeia Galego</p>"                
+            },
+
+            {
+                position: new google.maps.LatLng(-6.650991, -34.984090),
+                title: 'Junior Potiguara',                
+                infoWindowContent: "<p><b>Junior Potiguara</b><br>Aldeia São Francisco</p>"                
+            },
+
+            {
+                position: new google.maps.LatLng(-6.672142, -34.953644),
+                title: 'Iremar Potiguara',                
+                infoWindowContent: "<p><b>Iremar Potiguara</b><br>Aldeia Forte</p>"                
+            },
+            
+            {
+                position: new google.maps.LatLng(-6.603817, -34.969249),
+                title: 'Exposição do artesanato Indígena',                
+                infoWindowContent: "<p><b>Exposição do artesanato Indígena</b><br>Barra de Camaratuba</p>"                
+            },
+
+            {
+                position: new google.maps.LatLng(-6.603817, -34.969249),
+                title: 'Artefatos de caracterização para a dança do Toré',                
+                infoWindowContent: "<p><b>Artefatos de caracterização para a dança do Toré</b><br>Morrinho, Baía da Traição - PB<br>Zuleide Potiguara</p>"                
+            },
+
+            {
+                position: new google.maps.LatLng(-6.668281, -34.955559),
+                title: 'Chico Potiguara',
+                infoWindowContent: "<p><b>Chico Potiguara</b><br>Aldeia Forte</p>"                
+            },
+
+            {
+                position: new google.maps.LatLng(-6.603817, -34.969249),
+                title: 'Exposição do artesanato Indígena',
+                infoWindowContent: "<p><b>Exposição do artesanato Indígena</b><br>Barra de Camaratuba</p>"
+            }
           ];                  
 
-          this.mapMarker(markersInfo, map);
+          utils.mapMarker(markersInfo, map);
 
           google.maps.event.addDomListener(window, 'load');
-    },
-
-    mapMarker: function(markers, map){     
-        for(var i = 0; i < markers.length; i++){
-            var auxMarker = markers[i];            
-            auxMarker.map = map;            
-            var marker = new google.maps.Marker(auxMarker);                   
-            this.setInfoWindow(marker);
-        }        
-    },
-
-    setInfoWindow: function(marker){
-        var infowindow = new google.maps.InfoWindow({
-            content: marker.infoWindowContent
-        });                        
-        google.maps.event.addListener(marker, 'click', function() {                                
-            infowindow.open(marker.get('map'), marker);
-        });
     }
 });
 

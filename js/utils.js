@@ -23,5 +23,23 @@ window.utils = {
         if (menuItem) {
             $('.' + menuItem).addClass('active');
         }
+    },
+
+    mapMarker: function(markers, map){     
+        for(var i = 0; i < markers.length; i++){
+            var auxMarker = markers[i];            
+            auxMarker.map = map;            
+            var marker = new google.maps.Marker(auxMarker);                   
+            this.setInfoWindow(marker);
+        }        
+    },
+
+    setInfoWindow: function(marker){
+        var infowindow = new google.maps.InfoWindow({
+            content: marker.infoWindowContent
+        });                        
+        google.maps.event.addListener(marker, 'click', function() {                                
+            infowindow.open(marker.get('map'), marker);
+        });
     }
 };
